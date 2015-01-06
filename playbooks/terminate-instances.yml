@@ -1,0 +1,11 @@
+---
+- name: Terminate instances
+  hosts: app_servers
+  tasks:
+    - action: ec2_facts
+    - name: terminating single instance
+      local_action:
+        module: ec2
+        state: 'absent'
+        region: us-east-1
+        instance_ids: "{{ ansible_ec2_instance_id }}"
