@@ -1,11 +1,29 @@
 ---
 - name: Terminate instances
   hosts: app_servers
+  user: ubuntu
   tasks:
     - action: ec2_facts
-    - name: terminating single instance
-      local_action:
-        module: ec2
-        state: 'absent'
-        region: us-east-1
-        instance_ids: "{{ ansible_ec2_instance_id }}"
+    - debug: var=ansible_ec2_instance_id
+#    - name: Terminating instances
+#      local_action:
+#        module: ec2
+#        state: 'absent'
+#        region: us-east-1
+#        instance_ids: "{{ ansible_ec2_instance_id }}"
+
+#- name: Something
+#  hosts: app_servers
+#  user: ubuntu
+#  tasks:
+#    - name: Get first debug
+#      debug: " {{ hostvars['ansible_ec2_ami_manifest_path'] | to_yaml }}"
+#    debug: " {{ vars | to_yaml }} "
+
+#    HOSTVARS (ANSIBLE GATHERED, group_vars, host_vars) :
+#
+#             {{ hostvars['wip-box'] | to_yaml }}
+#
+#             PLAYBOOK VARS:
+#
+#             {{ vars | to_yaml }}

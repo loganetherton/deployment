@@ -1,5 +1,0 @@
-[local]
-localhost
-[app_servers]
-ec2-54-174-0-200.compute-1.amazonaws.com ansible_ssh_private_key_file=~/.ssh/loganswalk_ec2.pem
-
