@@ -1,0 +1,6 @@
+---
+- name: Configure existing instances
+  hosts: app_servers
+  user: ubuntu
+  roles:
+    - system
