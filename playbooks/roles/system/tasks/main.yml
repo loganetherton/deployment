@@ -170,6 +170,14 @@
      - tmux
      - unzip
      - software-properties-common
+     - wget
+     - make
+     - g++
+     - gcc
+     - libcurl4-openssl-dev
+     - libsasl2-2
+     - libsasl2-dev
+     - libcurl3
 
 
 
