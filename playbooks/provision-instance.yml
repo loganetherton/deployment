@@ -18,3 +18,5 @@
   sudo: True
   roles:
     - system
+    - app
+    - database

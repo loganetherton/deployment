@@ -3,6 +3,12 @@
 # Baseline system config #
 ##########################
 
+- name: Keep environment when switching to sudo to allow user agent forwarding to work properly
+  sudo: yes
+  lineinfile: line="Defaults    env_keep += "SSH_AUTH_SOCK""
+              dest=/etc/sudoers
+              state=present
+
 # Some baseline setup to make sure package installs, git clones, etc. will
 # work. This is all system-level stuff, nothing is really project specific
 
@@ -45,14 +51,14 @@
 # could run an extra command to test the actual list of mounted
 # partitions
 
-- name: Check if swap space is enabled
-  command: cat /proc/swaps
-  register: swaps
-
-- name: Ensure enough swap space is enabled, with high priority
-  command: swapon -p 100 /mnt/swap.swp
-  sudo: yes
-  when: ansible_swaptotal_mb < 1024 and swaps.stdout.find("/mnt/swap.swp") == -1
+#- name: Check if swap space is enabled
+#  command: cat /proc/swaps
+#  register: swaps
+#
+#- name: Ensure enough swap space is enabled, with high priority
+#  command: swapon -p 100 /mnt/swap.swp
+#  sudo: yes
+#  when: ansible_swaptotal_mb < 1024 and swaps.stdout.find("/mnt/swap.swp") == -1
 
 # Note that we didn't set this up for reboot. We assume any reboots
 #  will be accompanies with an ansible run.
@@ -123,12 +129,6 @@
   sudo: yes
   when: installed_unattended_upgrades|changed
 
-# This makes sure curl is installed. It's kind of unusual that it isn't, but
-# apparently Rackspace's Ubuntu images don't have it installed
-- name: Ensure curl is installed
-  apt: pkg=curl
-  sudo: yes
-
 # This lets us use apt_repository, which is used below and in some other roles
 - name: Ensure python-software-properties is installed (for apt_repository)
   apt: pkg=python-software-properties
@@ -165,6 +165,12 @@
      - mercurial
      - ntp
      - zip
+     - htop
+     - curl
+     - tmux
+     - unzip
+     - software-properties-common
+
 
 
 

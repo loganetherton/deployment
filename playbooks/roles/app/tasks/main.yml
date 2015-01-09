@@ -1,0 +1,17 @@
+---
+- name: Ensure the application directory exists and is writable
+  stat: path=/dry
+  register: app_path
+
+- name: Create the directory for the application code
+  file: path=/dry state=directory owner={{ansible_user_id}}
+  when: not app_path.stat.exists
+  sudo: yes
+
+- name: Ensure the application code exists
+  stat: path=/dry/server.js
+  register: app_exists
+
+- name: Clone the application code
+  git: repo=git@github.com:loganetherton/ac.git dest=/dry force=yes
+  when: not app_exists.stat.exists

@@ -1,0 +1,23 @@
+---
+
+- name: Add MongoDB GPG key
+  sudo: yes
+  command: apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10
+
+- name: Create list file for MongoDB
+  sudo: yes
+  lineinfile: >
+    line="deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen"
+    dest=/etc/apt/sources.list.d/mongodb.list
+    state=present
+    create=yes
+
+- name: Ensure MongoDB is installed
+  apt: name=mongodb-org state=present update_cache=yes
+  sudo: yes
+
+- name: Add MongoDB configuration
+  template: src=etc/mongod.conf dest=/etc/mongod.conf owner=root group=root mode=0644
+  sudo: yes
+  notify:
+    - mongodb-restart

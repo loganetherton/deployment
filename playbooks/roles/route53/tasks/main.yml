@@ -1,0 +1,35 @@
+---
+
+- name: Retrieve the current A records for Loganswalk.com
+  route53:
+    command: get
+    zone: loganswalk.com
+    record: loganswalk.com
+    type: A
+  register: loganswalk_a_record
+
+- name: Retrieve the current wildcard A records for Loganswalk.com
+  route53:
+    command: get
+    zone: loganswalk.com
+    record: '*.loganswalk.com'
+    type: A
+  register: loganswalk_a_record_wildcard
+
+- name: Delete current A record for Loganswalk.com if they exist
+  route53:
+    command: delete
+    zone: loganswalk.com
+    record: "{{loganswalk_a_record.set.record}}"
+    type: "{{loganswalk_a_record.set.type}}"
+    value: "{{loganswalk_a_record.set.value}}"
+  when: loganswalk_a_record|bool
+
+- name: Delete current wildcard A record for Loganswalk.com if they exist
+  route53:
+    command: delete
+    zone: loganswalk.com
+    record: "{{loganswalk_a_record.set.record}}"
+    type: "{{loganswalk_a_record.set.type}}"
+    value: "{{loganswalk_a_record.set.value}}"
+  when: loganswalk_a_record_wildcard|bool
