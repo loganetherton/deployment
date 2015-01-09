@@ -1,20 +1,12 @@
 ---
-#- name: Configure existing instances
-#  hosts: app_servers
-#  remote_user: ubuntu
-#  roles:
-##    - system
-##    - app
-##    - database
-#
+- name: Configure existing instances
+  hosts: app_servers
+  remote_user: ubuntu
+  roles:
+    - system
+    - app
+    - database
 
-#- name: Configure route53
-#  hosts: localhost
-#  connection: local
-#  tags: dns
-#  roles:
-###    - route53
-#    - route53-add
 
 - name: Configure existing instances
   hosts: app_servers
