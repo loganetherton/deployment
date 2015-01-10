@@ -11,13 +11,12 @@
     dest=/etc/apt/sources.list.d/mongodb.list
     state=present
     create=yes
+  notify:
+    - Update APT cache
 
 - name: Ensure MongoDB is installed
-  apt: name=mongodb-org state=present update_cache=yes
-  sudo: yes
-
-- name: Add MongoDB configuration
-  template: src=etc/mongod.conf dest=/etc/mongod.conf owner=root group=root mode=0644
+  apt: name=mongodb-org state=present
   sudo: yes
   notify:
-    - mongodb-restart
+    - Add MongoDB configuration
+    - Restart MongoDB

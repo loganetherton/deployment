@@ -1,3 +1,11 @@
 ---
+
+- name: Update APT cache
+  apt: update_cache=yes
+
+- name: Add MongoDB configuration
+  template: src=etc/mongod.conf dest=/etc/mongod.conf owner=root group=root mode=0644
+  sudo: yes
+
 - name: Restart MongoDB
   service: mongodb state=restarted
