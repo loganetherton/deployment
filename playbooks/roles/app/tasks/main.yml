@@ -21,7 +21,12 @@
   npm: global=yes name=bower state=present version='1.3.12'
   sudo: True
 
+- name: Install pm2
+  npm: global=yes name=pm2 state=present version='0.12.3'
+  sudo: True
+
 # Need to find a way to deal with the interactive prompt
+# I don't believe this is updating new packages when they're added
 # See: http://marvelley.com/blog/2014/04/23/handling-interactive-ansible-tasks/
 - name: Install bower packages
   shell: creates=/dry/bower_components chdir=/dry bower install
@@ -33,5 +38,7 @@
 - name: Install npm packages
   shell: creates=/dry/node_modules chdir=/dry npm install
 
-- name: Start the app
-  shell: chdir=/dry grunt --force &
+# See if the application is already running
+
+#- name: Start the app
+#  shell: chdir=/dry screen -dSm grunt bash -c "grunt"
