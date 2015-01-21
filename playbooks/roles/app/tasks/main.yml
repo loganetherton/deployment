@@ -12,10 +12,10 @@
   stat: path=/dry/server.js
   register: app_exists
 
-- name: Clone the application code
-  git: repo=git@github.com:loganetherton/ac.git dest=/dry update=yes
-#  when: not app_exists.stat.exists
-  register: app_cloned
+#- name: Clone the application code
+#  git: repo=git@github.com:loganetherton/ac.git dest=/dry update=yes
+##  when: not app_exists.stat.exists
+#  register: app_cloned
 
 - name: Install bower
   npm: global=yes name=bower state=present version='1.3.12'
@@ -38,7 +38,10 @@
 - name: Install npm packages
   shell: creates=/dry/node_modules chdir=/dry npm install
 
-# See if the application is already running
+- name: Redirect port 80 to port 3000 so we can serve the app off 3000, but connect via 80
+  sudo: True
+  command: sudo iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 3000
 
-#- name: Start the app
-#  shell: chdir=/dry screen -dSm grunt bash -c "grunt"
+#- name: Deploy the application with pm2
+#
+#- name: Ensure that the application is running via pm2
