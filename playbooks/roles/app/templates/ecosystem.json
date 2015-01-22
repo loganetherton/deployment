@@ -14,6 +14,7 @@
       "ref": "origin/develop",
       "repo": "git@github.com:loganetherton/ac.git",
       "path": "/dry",
+      "watch": true,
       "env": {
         "NODE_ENV": "production"
       },

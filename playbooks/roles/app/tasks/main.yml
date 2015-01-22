@@ -1,46 +1,34 @@
 ---
-#- name: Ensure the application directory exists and is writable
-#  stat: path=/dry
-#  register: app_path
-#
-#- name: Create the directory for the application code
-#  file: path=/dry state=directory owner={{ansible_user_id}}
-#  when: not app_path.stat.exists
-#  sudo: yes
-#
-#- name: Ensure the application code exists
-#  stat: path=/dry/server.js
-#  register: app_exists
-#
-##- name: Clone the application code
-##  git: repo=git@github.com:loganetherton/ac.git dest=/dry update=yes
-###  when: not app_exists.stat.exists
-##  register: app_cloned
-#
-#- name: Install bower
-#  npm: global=yes name=bower state=present version='1.3.12'
-#  sudo: True
-#
-#- name: Install pm2
-#  npm: global=yes name=pm2 state=present version='0.12.3'
-#  sudo: True
-#
+- name: Ensure the application directory exists and is writable
+  stat: path=/dry
+  register: app_path
+
+- name: Create the directory for the application code
+  file: path=/dry state=directory owner={{ansible_user_id}}
+  when: not app_path.stat.exists
+  sudo: yes
+
+- name: Install bower
+  npm: global=yes name=bower state=present version='1.3.12'
+  sudo: True
+
+- name: Install pm2
+  npm: global=yes name=pm2 state=present version='0.12.3'
+  sudo: True
+
 ## Need to find a way to deal with the interactive prompt
 ## I don't believe this is updating new packages when they're added
 ## See: http://marvelley.com/blog/2014/04/23/handling-interactive-ansible-tasks/
 #- name: Install bower packages
 #  shell: creates=/dry/bower_components chdir=/dry bower install
 #
-#- name: Install grunt
-#  npm: global=yes name=grunt-cli state=present version='0.1.13'
-#  sudo: True
-#
-#- name: Install npm packages
-#  shell: creates=/dry/node_modules chdir=/dry npm install
-#
-#- name: Redirect port 80 to port 3000 so we can serve the app off 3000, but connect via 80
-#  sudo: True
-#  command: sudo iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 3000
+- name: Install grunt
+  npm: global=yes name=grunt-cli state=present version='0.1.13'
+  sudo: True
+
+- name: Redirect port 80 to port 3000 so we can serve the app off 3000, but connect via 80
+  sudo: True
+  command: sudo iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 3000
 
 - name: Add pm2 configuration
   template: src=ecosystem.json dest=/dry/source/ecosystem.json owner=ubuntu group=ubuntu mode=0664
@@ -48,5 +36,3 @@
 
 - name: Deploy the application with pm2
   local_action: command pm2 deploy ecosystem.json production
-
-#- name: Ensure that the application is running via pm2
