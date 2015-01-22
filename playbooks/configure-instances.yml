@@ -13,17 +13,3 @@
 #    - database
 #    - node
     - app
-
-#- name: pm2 for app management
-#  hosts: app_servers
-#  remote_user: ubuntu
-#  sudo: true
-#  vars:
-#      pm2_startup: ubuntu
-#      pm2_apps:
-#        - /dry/ecosystem.json
-#      pm2_service_enabled: yes
-#      pm2_service_state: started
-## NOTE: The franklinkim.pm2 role is dependent on pm2: https://github.com/weareinteractive/ansible-pm2
-#  roles:
-#    - franklinkim.pm2
