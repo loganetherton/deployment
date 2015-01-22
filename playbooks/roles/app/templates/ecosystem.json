@@ -1,16 +1,12 @@
 {
-  "apps": [
+  "apps" : [
     {
       "name": "dry",
       "script": "server.js",
-      "env": {
-        "COMMON_VARIABLE": "true"
-      },
-      "env_production": {
-        "NODE_ENV": "production"
-      }
+      "watch": true
     }
   ],
+
   "deploy": {
     "production": {
       "user": "ubuntu",
@@ -18,7 +14,21 @@
       "ref": "origin/develop",
       "repo": "git@github.com:loganetherton/ac.git",
       "path": "/dry",
+      "env": {
+        "NODE_ENV": "production"
+      },
       "post-deploy": "pm2 startOrRestart ecosystem.json --env production && npm install && bower install && NODE_ENV=production grunt"
+    },
+    "dev": {
+      "user": "node",
+      "host": "ec2-54-86-44-247.compute-1.amazonaws.com",
+      "ref": "origin/develop",
+      "repo": "git@github.com:loganetherton/ac.git",
+      "path": "/dry",
+      "post-deploy": "pm2 startOrRestart ecosystem.json --env production && npm install && bower install && grunt",
+      "env": {
+        "NODE_ENV": "dev"
+      }
     }
   }
 }

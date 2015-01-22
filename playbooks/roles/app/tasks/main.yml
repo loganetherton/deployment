@@ -42,6 +42,10 @@
 #  sudo: True
 #  command: sudo iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 3000
 
+- name: Add pm2 configuration
+  template: src=ecosystem.json dest=/dry/ecosystem.json owner=ubuntu group=ubuntu mode=0664
+  sudo: yes
+
 - name: Deploy the application with pm2
   local_action: command pm2 deploy ecosystem.json production
 
