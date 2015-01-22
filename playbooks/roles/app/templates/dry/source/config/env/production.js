@@ -35,9 +35,9 @@ module.exports = {
     name: 'MEAN - A Modern Stack - Production'
   },
   facebook: {
-    clientID: '{{ FACEBOOK_APP_ID }}',
-    clientSecret: '{{ FACEBOOK_APP_SECRET }}',
-    callbackURL: '{{ FACEBOOK_APP_REDIRECT }}'
+    clientID: '{{ facebook_app_id }}',
+    clientSecret: '{{ facebook_app_secret }}',
+    callbackURL: '{{ facebook_app_redirect }}'
   },
   twitter: {
     clientID: 'CONSUMER_KEY',
