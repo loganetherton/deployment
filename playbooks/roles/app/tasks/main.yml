@@ -36,3 +36,7 @@
 
 - name: Deploy the application with pm2
   local_action: command pm2 deploy ecosystem.json production
+
+- name: Copy production configuration to application
+  template: src=dry/source/config/env/production.js dest=/dry/source/config/env/production.js owner=ubuntu group=ubuntu mode=0664
+  sudo: yes

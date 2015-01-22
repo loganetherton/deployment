@@ -9,7 +9,7 @@
       node_tarball: "{{node_prefix}}.tar.gz"
       node_path: "/usr/local"
   roles:
-    - system
-    - database
-    - node
+#    - system
+#    - database
+#    - node
     - app
