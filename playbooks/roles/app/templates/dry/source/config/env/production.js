@@ -40,14 +40,14 @@ module.exports = {
     callbackURL: '{{ facebook_app_redirect }}'
   },
   twitter: {
-    clientID: '{{ facebook_app_id }}',
-    clientSecret: '{{ facebook_app_secret }}',
-    callbackURL: '{{ facebook_app_redirect }}'
+    clientID: '{{ twitter_app_id }}',
+    clientSecret: '{{ twitter_app_secret }}',
+    callbackURL: '{{ twitter_app_redirect }}'
   },
   github: {
-    clientID: '{{ facebook_app_id }}',
-    clientSecret: '{{ facebook_app_secret }}',
-    callbackURL: '{{ facebook_app_redirect }}'
+    clientID: '',
+    clientSecret: '',
+    callbackURL: ''
   },
   google: {
     clientID: '{{ google_app_id }}',
