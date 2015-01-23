@@ -40,19 +40,19 @@ module.exports = {
     callbackURL: '{{ facebook_app_redirect }}'
   },
   twitter: {
-    clientID: 'CONSUMER_KEY',
-    clientSecret: 'CONSUMER_SECRET',
-    callbackURL: 'http://localhost:3000/auth/twitter/callback'
+    clientID: '{{ facebook_app_id }}',
+    clientSecret: '{{ facebook_app_secret }}',
+    callbackURL: '{{ facebook_app_redirect }}'
   },
   github: {
-    clientID: 'APP_ID',
-    clientSecret: 'APP_SECRET',
-    callbackURL: 'http://localhost:3000/auth/github/callback'
+    clientID: '{{ facebook_app_id }}',
+    clientSecret: '{{ facebook_app_secret }}',
+    callbackURL: '{{ facebook_app_redirect }}'
   },
   google: {
-    clientID: 'APP_ID',
-    clientSecret: 'APP_SECRET',
-    callbackURL: 'http://localhost:3000/auth/google/callback'
+    clientID: '{{ google_app_id }}',
+    clientSecret: '{{ google_app_secret }}',
+    callbackURL: '{{ google_app_redirect }}'
   },
   linkedin: {
     clientID: 'API_KEY',

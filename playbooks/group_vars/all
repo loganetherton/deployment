@@ -3,3 +3,11 @@
 facebook_app_id: "{{ lookup('env', 'FACEBOOK_APP_ID') or false }}"
 facebook_app_secret: "{{ lookup('env', 'FACEBOOK_APP_SECRET') or false }}"
 facebook_app_redirect: "{{ lookup('env', 'FACEBOOK_APP_REDIRECT') or false }}"
+
+google_app_id: "{{ lookup('env', 'GOOGLE_APP_ID') or false }}"
+google_app_secret: "{{ lookup('env', 'GOOGLE_APP_SECRET') or false }}"
+google_app_redirect: "{{ lookup('env', 'GOOGLE_APP_REDIRECT') or false }}"
+
+twitter_app_id: "{{ lookup('env', 'TWITTER_APP_ID') or false }}"
+twitter_app_secret: "{{ lookup('env', 'TWITTER_APP_SECRET') or false }}"
+twitter_app_redirect: "{{ lookup('env', 'TWITTER_APP_REDIRECT') or false }}"
