@@ -45,9 +45,9 @@ module.exports = {
     callbackURL: '{{ twitter_app_redirect }}'
   },
   github: {
-    clientID: '',
-    clientSecret: '',
-    callbackURL: ''
+    clientID: 'API_KEY',
+    clientSecret: 'SECRET_KEY',
+    callbackURL: 'http://localhost:3000/auth/github/callback'
   },
   google: {
     clientID: '{{ google_app_id }}',
