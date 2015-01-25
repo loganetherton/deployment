@@ -1,12 +1,25 @@
 ---
+
 - name: Ensure the application directory exists and is writable
-  stat: path=/dry
+  stat: path=/dry/source
   register: app_path
 
 - name: Create the directory for the application code
-  file: path=/dry state=directory owner={{ansible_user_id}}
+  file: path=/dry/source state=directory owner={{ansible_user_id}}
   when: not app_path.stat.exists
   sudo: yes
+
+- name: Ensure the application code exists
+  stat: path=/dry/source/server.js
+  register: app_exists
+
+- name: Clone the application code
+  git: repo=git@github.com:loganetherton/ac.git dest=/dry/source update=yes
+  register: app_cloned
+
+  # Clean cache (bower cache clean)
+  # Make sure that bower has owner and group as ubuntu
+  # Make sure that /dry/source has the owner and group as ubuntu
 
 - name: Install bower
   npm: global=yes name=bower state=present version='1.3.12'

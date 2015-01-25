@@ -23,7 +23,7 @@
       "env": {
         "NODE_ENV": "production"
       },
-      "post-deploy": "pm2 startOrRestart ecosystem.json --env production && npm install && bower install && NODE_ENV=production grunt"
+      "post-deploy": "pm2 startOrRestart ecosystem.json --env production && npm install --production && NODE_ENV=production grunt"
     },
     "production_code_update": {
       "user": "ubuntu",
@@ -42,7 +42,7 @@
       "ref": "origin/develop",
       "repo": "git@github.com:loganetherton/ac.git",
       "path": "/dry",
-      "post-deploy": "pm2 startOrRestart ecosystem.json --env dev && npm install && bower install && grunt",
+      "post-deploy": "pm2 startOrRestart ecosystem.json --env dev && npm install && grunt",
       "env": {
         "NODE_ENV": "dev"
       }
