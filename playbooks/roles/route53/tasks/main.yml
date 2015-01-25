@@ -30,9 +30,9 @@
 #############################
 
 - name: Add new A record for running instance
-  local_action: route53 command=create zone="loganswalk.com" record="loganswalk.com" type=A ttl=3600 value="{{ansible_ec2_public_ipv4}}"
+  local_action: route53 command=create zone="loganswalk.com" record="loganswalk.com" type=A ttl=3600 value="{{ansible_ec2_public_ipv4}}" overwrite="yes"
   when: not a_records|bool
 
 - name: Add new wildcard A record for running instance
-  local_action: route53 command=create zone="loganswalk.com" record="*.loganswalk.com" type=A ttl=3600 value="{{ansible_ec2_public_ipv4}}"
+  local_action: route53 command=create zone="loganswalk.com" record="*.loganswalk.com" type=A ttl=3600 value="{{ansible_ec2_public_ipv4}}" overwrite="yes"
   when: not a_records|bool
