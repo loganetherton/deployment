@@ -16,7 +16,7 @@
   "deploy": {
     "production": {
       "user": "ubuntu",
-      "host": "ec2-54-86-44-247.compute-1.amazonaws.com",
+      "host": "ec2-54-174-235-177.compute-1.amazonaws.com",
       "ref": "origin/develop",
       "repo": "git@github.com:loganetherton/ac.git",
       "path": "/dry",
@@ -28,7 +28,7 @@
     },
     "production_code_update": {
       "user": "ubuntu",
-      "host": "ec2-54-86-44-247.compute-1.amazonaws.com",
+      "host": "ec2-54-174-235-177.compute-1.amazonaws.com",
       "ref": "origin/develop",
       "repo": "git@github.com:loganetherton/ac.git",
       "path": "/dry",
@@ -39,7 +39,7 @@
     },
     "dev": {
       "user": "node",
-      "host": "ec2-54-86-44-247.compute-1.amazonaws.com",
+      "host": "ec2-54-174-235-177.compute-1.amazonaws.com",
       "ref": "origin/develop",
       "repo": "git@github.com:loganetherton/ac.git",
       "path": "/dry",
