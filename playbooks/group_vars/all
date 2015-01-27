@@ -11,3 +11,5 @@ google_app_redirect: "{{ lookup('env', 'GOOGLE_APP_REDIRECT') or false }}"
 twitter_app_id: "{{ lookup('env', 'TWITTER_APP_ID') or false }}"
 twitter_app_secret: "{{ lookup('env', 'TWITTER_APP_SECRET') or false }}"
 twitter_app_redirect: "{{ lookup('env', 'TWITTER_APP_REDIRECT') or false }}"
+
+email_password: "{{ lookup('env', 'EMAIL_PASS') or false }}"

@@ -6,6 +6,7 @@
  */
 
 module.exports = {
+  emailPassword: '{{ email_password }}',
   db: 'mongodb://localhost/mean-prod',
   /**
    * Database options that will be passed directly to mongoose.connect
