@@ -20,12 +20,8 @@
   apt: name=mongodb-org state=present
   sudo: yes
   notify:
-    - Restart mongodb
+    - restart mongodb
 
 - name: Add MongoDB configuration
   template: src=etc/mongod.conf dest=/etc/mongod.conf owner=root group=root mode=0644
   sudo: yes
-
-handlers:
-  - name: Restart mongodb
-    service: mongodb state=restarted

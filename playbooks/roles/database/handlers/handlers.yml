@@ -1,4 +1,4 @@
 ---
 
-#- name: Restart mongodb
-#  service: mongodb state=restarted
+- name: restart mongodb
+  service: mongodb state=restarted
