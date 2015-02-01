@@ -3,7 +3,7 @@
     {
       "name": "dry",
       "script": "server.js",
-      "watch": true,
+      "watch": false,
       "env_production": {
         "NODE_ENV": "production"
       },
@@ -20,11 +20,10 @@
       "ref": "origin/develop",
       "repo": "git@github.com:loganetherton/ac.git",
       "path": "/dry",
-      "watch": true,
       "env": {
         "NODE_ENV": "production"
       },
-      "post-deploy": "pm2 startOrRestart ecosystem.json -i 1 --env production && npm install && bower install && NODE_ENV=production grunt"
+      "post-deploy": "pm2 startOrRestart ecosystem.json --env production && npm install && bower install && NODE_ENV=production grunt"
     },
     "production_code_update": {
       "user": "ubuntu",
