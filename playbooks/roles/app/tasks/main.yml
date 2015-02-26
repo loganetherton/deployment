@@ -53,6 +53,7 @@
 - name: Copy production configuration to application
   template: src=dry/source/config/env/production.js dest=/dry/source/config/env/production.js owner=ubuntu group=ubuntu mode=0664
   sudo: yes
+  notify: restart pm2
 
 - name: Set /home/ubuntu/.config permissions (Bower wants to write here...)
   file: path=/home/ubuntu/.config mode=0766

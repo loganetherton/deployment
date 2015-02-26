@@ -1,0 +1,4 @@
+---
+
+- name: restart pm2
+  command: pm2 restart dry
